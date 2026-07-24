@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Treasury | Square Country</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script src="https://unpkg.com/feather-icons"></script>
+
+<style>
+
+.hero {
+    background: linear-gradient(90deg,rgba(199, 22, 90, 1) 0%, rgba(237, 18, 102, 1) 50%, rgba(255, 64, 137, 1) 100%);
+}
+
+.gov-card {
+    transition:.25s ease;
+}
+
+.gov-card:hover {
+    transform:translateY(-6px);
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 0%;
+    height: 2px;
+    background: #ed1266;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #ed1266;
+}
+
+.service-link {
+    font-family: 'open-sans', sans-serif;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+</style>
+
+</head>
+
+
+<body class="bg-gray-100 text-gray-900">
+
+
+<!-- NAVBAR -->
+
+<nav class="bg-white shadow sticky top-0 z-50">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="h-20 flex justify-between items-center">
+
+
+<div class="flex items-center gap-4">
+
+<div class="w-12 h-12 rounded-lg bg-[#ed1266] flex items-center justify-center">
+<i data-feather="landmark" class="text-white"></i>
+</div>
+
+
+<div>
+<p class="font-bold text-lg">
+The Treasury
+</p>
+
+<p class="text-sm text-gray-500">
+His Majesty's Treasury of Square Country
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="hidden md:flex gap-8 text-sm font-medium">
+
+    <div class="hidden md:flex gap-8 text-sm font-medium">
+
+        <a href="index.html" class="nav-link text-[#ed1266]">Home</a>
+
+        <a href="about-treasury.html" class="nav-link text-gray-700">About the Treasury</a>
+
+        <a href="information-and-services.html" class="nav-link text-gray-700">Information and services</a>
+
+        <a href="news-and-events" class="nav-link text-gray-700">News and events</a>
+
+        <a href="publications.html" class="nav-link text-gray-700">Publications</a>
+
+    </div>
+
+</div>
+
+</div>
+
+</nav>
+
+
+
+
+
+<!-- HERO -->
+
+
+<section class="hero text-white">
+
+<div class="max-w-7xl mx-auto px-6 py-24">
+
+<div class="max-w-3xl" data-aos="fade-up">
+
+
+<div class="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm mb-6">
+
+<i data-feather="square" class="w-4"></i>
+
+Ministry of Finance
+
+</div>
+
+
+
+<h1 class="text-5xl font-extrabold leading-tight">
+
+Ensuring fiscal responsibility across Square Country
+
+</h1>
+
+
+<p class="mt-6 text-xl text-gray-200">
+
+The Treasury oversees taxation, public spending, economic policy and the responsible management of national finances.
+
+</p>
+
+
+<div class="mt-10 flex gap-4">
+
+
+<a class="bg-white text-[#D60D5A] px-7 py-3 rounded-md font-semibold">
+
+Budget 2026
+
+</a>
+
+
+<a class="border border-white/40 px-7 py-3 rounded-md hover:bg-white/10">
+
+Financial Reports
+
+</a>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- QUICK SERVICES -->
+
+
+<section class="py-16 bg-white">
+
+<div class="max-w-7xl mx-auto px-6">
+
+
+<div class="text-center mb-12">
+
+<p class="uppercase text-sm tracking-widest text-[#D60D5A] font-bold">
+Treasury Information
+</p>
+
+<h2 class="text-4xl font-bold mt-3">
+Useful information for citizens and businesses
+</h2>
+
+</div>
+
+
+
+
+<div class="grid md:grid-cols-3 gap-8">
+
+
+<div class="gov-card bg-white border rounded-xl p-8 flex flex-col">
+
+<div class="bg-[#ed1266] w-12 h-12 rounded-lg flex items-center justify-center">
+
+<i data-feather="file-text" class="text-white"></i>
+
+</div>
+
+
+<h3 class="mt-6 font-bold text-xl">
+Budget 2026
+</h3>
+
+
+<p class="mt-3 text-gray-600">
+Budget 2026 was released on 10 June 2026.
+</p>
+
+
+<a href="budget.html" class="service-link mt-auto pt-6 text-[#015ea5] underline text-sm hover:text-blue-900">
+BUDGET 2026
+</a>
+
+
+</div>
+
+<div class="gov-card bg-white border rounded-xl p-8 flex flex-col">
+
+<div class="bg-[#ed1266] w-12 h-12 rounded-lg flex items-center justify-center">
+
+<i data-feather="file-text" class="text-white"></i>
+
+</div>
+
+
+<h3 class="mt-6 font-bold text-xl">
+Budget Economic and Fiscal Update 2026
+</h3>
+
+
+<p class="mt-3 text-gray-600">
+The Treasury's latest forecasts for Government finances were released with Budget 2026 on 10 June 2026.
+</p>
+
+
+<a href="#" class="service-link mt-auto pt-6 text-[#015ea5] underline text-sm hover:text-blue-900">
+BUDGET ECONOMIC AND FISCAL UPDATE 2026
+</a>
+
+</div>
+
+<div class="gov-card bg-white border rounded-xl p-8 flex flex-col">
+
+<div class="bg-[#ed1266] w-12 h-12 rounded-lg flex items-center justify-center">
+
+<i data-feather="file-text" class="text-white"></i>
+
+</div>
+
+
+<h3 class="mt-6 font-bold text-xl">
+Sustainable and resilient fiscal policy through economic shocks and cycles
+</h3>
+
+
+<p class="mt-3 text-gray-600">
+The Treasury has released its final 2025 Long-term Insights Briefings.
+</p>
+
+
+<a href="#" class="service-link mt-auto pt-6 text-[#015ea5] underline text-sm hover:text-blue-900">
+FIND OUT MORE HERE
+</a>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+
+
+
+<!-- FEATURE -->
+
+<section class="bg-gray-50 py-16">
+
+
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+
+
+<div data-aos="fade-right">
+
+
+<p class="text-[#D60D5A] font-bold uppercase text-sm">
+Latest Fiscal Update
+</p>
+
+
+<h2 class="text-4xl font-bold mt-3">
+
+2026 National Budget Statement
+
+</h2>
+
+
+<p class="mt-5 text-gray-600 text-lg">
+
+The Treasury has released the Government's annual financial statement,
+outlining investment priorities, economic forecasts and spending plans.
+
+</p>
+
+
+<button class="mt-8 bg-[#ed1266] text-white px-6 py-3 rounded-md">
+
+Read Statement
+
+</button>
+
+
+</div>
+
+
+
+
+<div class="bg-white rounded-xl shadow-lg p-8">
+
+
+<div class="flex justify-between border-b pb-4">
+
+<span>Annual Budget</span>
+
+<b>₴42.8 Billion</b>
+
+</div>
+
+
+<div class="flex justify-between border-b py-4">
+
+<span>GDP Growth</span>
+
+<b>2.7%</b>
+
+</div>
+
+
+<div class="flex justify-between py-4">
+
+<span>Debt Reduction</span>
+
+<b>2.1%</b>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- STATS -->
+
+
+<section class="bg-[#ed1266] text-white py-16">
+
+
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 text-center gap-10">
+
+
+<div>
+
+<p class="text-5xl font-bold">
+₴241.8B
+</p>
+
+<p class="mt-2 text-white">
+Annual Government Budget
+</p>
+
+</div>
+
+
+
+<div>
+
+<p class="text-5xl font-bold">
+98%
+</p>
+
+<p class="mt-2 text-white">
+Tax Compliance Rate
+</p>
+
+</div>
+
+
+
+<div>
+
+<p class="text-5xl font-bold">
+12.7M
+</p>
+
+<p class="mt-2 text-white">
+Citizens Supported
+</p>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<footer class="bg-gray-900 text-gray-400 py-12">
+
+
+<div class="max-w-7xl mx-auto px-6">
+
+
+<div class="flex justify-between flex-wrap gap-8">
+
+
+<div>
+
+<h3 class="text-white font-bold text-lg">
+His Majesty's Treasury of Square Country
+</h3>
+
+<p class="mt-3">
+Square Country Government
+</p>
+
+</div>
+
+<div class="space-y-2">
+
+<p>Budget Documents</p>
+<p>Tax Services</p>
+<p>Economic Reports</p>
+<p>Contact Treasury</p>
+
+</div>
+
+<div class="space-y-2">
+
+<p>Blog</p>
+<p>Media</p>
+<p>PIA Requests</p>
+<p>Contact Treasury</p>
+
+</div>
+
+
+</div>
+
+
+<div class="border-t border-gray-700 mt-10 pt-6 text-sm">
+
+© 2026 His Majesty's Treasury, Square Country
+
+</div>
+
+
+</div>
+
+
+</footer>
+
+
+
+
+<script>
+
+AOS.init();
+
+feather.replace();
+
+</script>
+
+
+
+</body>
+</html>
