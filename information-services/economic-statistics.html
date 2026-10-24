@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Economic Statistics | HM Treasury Square Country</title>
+
+<link rel="icon" href="../images/Treasury.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .nav-link {
+        position: relative;
+        transition: color .3s;
+    }
+
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 0;
+        height: 2px;
+        background: #ed1266;
+        transition: width .3s;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .nav-link:hover {
+        color: #ed1266;
+    }
+
+    .stat-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 25px;
+    }
+
+    .stat-value {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: -1px;
+        margin-top: 13px;
+    }
+
+    .stat-label {
+        color: #6b7280;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .stat-detail {
+        color: #9ca3af;
+        font-size: 12px;
+        margin-top: 11px;
+    }
+
+    .chart-box {
+        background: white;
+        border: 1px solid #e5e7eb;
+        padding: 25px;
+        border-radius: 12px;
+    }
+
+    .chart-container {
+        position: relative;
+        height: 280px;
+    }
+
+    .finance-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 16px 0;
+        border-bottom: 1px solid #e5e7eb;
+        font-size: 14px;
+    }
+
+    .finance-row:last-child {
+        border-bottom: none;
+    }
+
+    .finance-value {
+        font-weight: 700;
+        text-align: right;
+    }
+
+    .data-status {
+        background: #fff0f6;
+        color: #a40d49;
+        border: 1px solid #fbcfe0;
+        border-radius: 8px;
+        padding: 14px 18px;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+</style>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+<nav class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="h-20 flex justify-between items-center gap-6">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-lg bg-[#ed1266]
+                            flex items-center justify-center">
+                    <i data-feather="landmark" class="text-white"></i>
+                </div>
+
+                <div>
+                    <p class="font-bold text-lg">The Treasury</p>
+                    <p class="text-sm text-gray-500">
+                        His Majesty's Treasury of Square Country
+                    </p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="../index.html" class="nav-link text-gray-700">
+                    Home
+                </a>
+
+                <a href="../about-treasury.html" class="nav-link text-gray-700">
+                    About the Treasury
+                </a>
+
+                <a href="../information-and-services.html"
+                   class="nav-link text-[#ed1266]">
+                    Information and services
+                </a>
+
+                <a href="../news-and-events.html" class="nav-link text-gray-700">
+                    News and events
+                </a>
+
+                <a href="../publications.html" class="nav-link text-gray-700">
+                    Publications
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<header class="bg-[#ed1266] text-white shadow">
+    <div class="max-w-7xl mx-auto px-6 py-10">
+
+        <div class="flex items-center gap-3 text-sm font-medium mb-8">
+            <a href="../index.html" class="hover:underline">Home</a>
+            <i data-feather="chevron-right" class="w-4 h-4"></i>
+
+            <a href="../information-and-services.html" class="hover:underline">
+                Information and services
+            </a>
+
+            <i data-feather="chevron-right" class="w-4 h-4"></i>
+            <span>Economic Statistics</span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight">
+            Economic Statistics
+        </h1>
+
+        <p class="mt-4 text-lg md:text-xl text-white/90 max-w-3xl">
+            Key indicators, national economic performance and
+            government financial statistics for Square Country.
+        </p>
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 py-12">
+
+    <div class="data-status mb-10" id="dataStatus" role="status">
+        Loading the latest economic statistics...
+    </div>
+
+    <section>
+        <h2 class="text-3xl font-bold mb-3">
+            Key Economic Indicators
+        </h2>
+
+        <p class="text-gray-600 mb-7">
+            An overview of Square Country's principal economic indicators.
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            <div class="stat-card">
+                <div class="stat-label">Nominal GDP</div>
+                <div class="stat-value" id="gdp">—</div>
+                <div class="stat-detail">Current annualised nominal output</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Real GDP Growth</div>
+                <div class="stat-value" id="gdpGrowth">—</div>
+                <div class="stat-detail">Modelled short-term annualised estimate</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Annual Inflation</div>
+                <div class="stat-value" id="inflation">—</div>
+                <div class="stat-detail">Simulated annual inflation rate</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Unemployment Rate</div>
+                <div class="stat-value" id="unemployment">—</div>
+                <div class="stat-detail">Percentage of labour force</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Official Interest Rate</div>
+                <div class="stat-value" id="interestRate">—</div>
+                <div class="stat-detail">Simulated policy interest rate</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-label">Population</div>
+                <div class="stat-value" id="population">—</div>
+                <div class="stat-detail">Estimated population</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-16">
+        <h2 class="text-3xl font-bold mb-7">Economic Trends</h2>
+
+        <div class="grid lg:grid-cols-2 gap-6">
+            <div class="chart-box">
+                <h3 class="font-bold mb-5">GDP Growth</h3>
+                <div class="chart-container">
+                    <canvas id="gdpChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <h3 class="font-bold mb-5">Inflation</h3>
+                <div class="chart-container">
+                    <canvas id="inflationChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <h3 class="font-bold mb-5">Unemployment</h3>
+                <div class="chart-container">
+                    <canvas id="unemploymentChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <h3 class="font-bold mb-5">Nominal GDP (SC$ billions)</h3>
+                <div class="chart-container">
+                    <canvas id="nominalChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-16">
+        <h2 class="text-3xl font-bold mb-7">
+            Government Finances
+        </h2>
+
+        <div class="bg-white border rounded-xl p-7">
+            <div class="finance-row">
+                <span>Government Revenue</span>
+                <span class="finance-value" id="revenue">—</span>
+            </div>
+
+            <div class="finance-row">
+                <span>Government Expenditure</span>
+                <span class="finance-value" id="expenditure">—</span>
+            </div>
+
+            <div class="finance-row">
+                <span>Fiscal Balance</span>
+                <span class="finance-value" id="fiscalBalance">—</span>
+            </div>
+
+            <div class="finance-row">
+                <span>Government Debt</span>
+                <span class="finance-value" id="debt">—</span>
+            </div>
+
+            <div class="finance-row">
+                <span>Debt-to-GDP Ratio</span>
+                <span class="finance-value" id="debtRatio">—</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="mt-16">
+        <h2 class="text-3xl font-bold mb-7">
+            International Trade
+        </h2>
+
+        <div class="bg-white border rounded-xl p-7">
+            <div class="finance-row">
+                <span>Exports</span>
+                <span class="finance-value" id="exports">—</span>
+            </div>
+
+            <div class="finance-row">
+                <span>Imports</span>
+                <span class="finance-value" id="imports">—</span>
+            </div>
+
+            <div class="finance-row">
+                <span>Trade Balance</span>
+                <span class="finance-value" id="tradeBalance">—</span>
+            </div>
+
+            <div class="finance-row">
+                <span>Exchange Rate (SC$1 to USD)</span>
+                <span class="finance-value" id="exchangeRate">—</span>
+            </div>
+        </div>
+    </section>
+
+    <p class="text-sm text-gray-500 mt-14 leading-7">
+        These figures are generated by the fictional Square Country
+        Economic Simulation. They are model estimates and do not
+        represent an actual national economy. Historical daily data
+        is provided for simulation purposes.
+    </p>
+
+</main>
+
+<script>
+// Replace this URL with your published economic data URL.
+const DATA_BASE =
+    "https://tmitmac.github.io/square-country-economy/data/";
+
+const charts = {};
+
+const setText = (id, value) => {
+    document.getElementById(id).textContent = value;
+};
+
+function money(value) {
+    const sign = value < 0 ? "-" : "";
+    const abs = Math.abs(value);
+
+    if (abs >= 1e12)
+        return sign + "SC$" + (abs / 1e12).toFixed(3) + "T";
+
+    if (abs >= 1e9)
+        return sign + "SC$" + (abs / 1e9).toFixed(2) + "B";
+
+    if (abs >= 1e6)
+        return sign + "SC$" + (abs / 1e6).toFixed(2) + "M";
+
+    return sign + "SC$" + abs.toLocaleString();
+}
+
+function percent(value) {
+    return Number(value).toFixed(2) + "%";
+}
+
+function renderChart(canvasId, labels, values, color, suffix = "%") {
+    if (typeof Chart === "undefined") return;
+
+    if (charts[canvasId]) charts[canvasId].destroy();
+
+    charts[canvasId] = new Chart(
+        document.getElementById(canvasId),
+        {
+            type: "line",
+            data: {
+                labels,
+                datasets: [{
+                    data: values,
+                    borderColor: color,
+                    backgroundColor: color + "15",
+                    fill: true,
+                    tension: 0.3,
+                    borderWidth: 2,
+                    pointRadius: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: context =>
+                                context.parsed.y.toFixed(2) + suffix
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            maxTicksLimit: 6,
+                            maxRotation: 0
+                        }
+                    },
+                    y: {
+                        ticks: { maxTicksLimit: 6 }
+                    }
+                }
+            }
+        }
+    );
+}
+
+async function loadStatistics() {
+    try {
+        const [economyResponse, historyResponse] = await Promise.all([
+            fetch(DATA_BASE + "economy.json", { cache: "no-store" }),
+            fetch(DATA_BASE + "history.json", { cache: "no-store" })
+        ]);
+
+        if (!economyResponse.ok || !historyResponse.ok) {
+            throw new Error(
+                "The economic data feed is unavailable."
+            );
+        }
+
+        const data = await economyResponse.json();
+        const history = await historyResponse.json();
+
+        if (!data.economy || !Array.isArray(history)) {
+            throw new Error("Invalid economic data.");
+        }
+
+        const e = data.economy;
+
+        setText("gdp", money(e.gdp));
+        setText("gdpGrowth", percent(e.gdpGrowth));
+        setText("inflation", percent(e.inflation));
+        setText("unemployment", percent(e.unemployment));
+        setText("interestRate", percent(e.interestRate));
+        setText("population", e.population.toLocaleString());
+
+        setText("revenue", money(e.governmentRevenue));
+        setText("expenditure", money(e.governmentExpenditure));
+
+        setText(
+            "fiscalBalance",
+            money(e.governmentRevenue - e.governmentExpenditure)
+        );
+
+        setText("debt", money(e.governmentDebt));
+
+        setText(
+            "debtRatio",
+            percent(e.governmentDebt / e.gdp * 100)
+        );
+
+        setText("exports", money(e.exports));
+        setText("imports", money(e.imports));
+
+        setText(
+            "tradeBalance",
+            money(e.exports - e.imports)
+        );
+
+        setText(
+            "exchangeRate",
+            "US$" + Number(e.exchangeRateUSD).toFixed(4)
+        );
+
+        const recent = history
+            .filter(item => item && item.economy)
+            .slice(-90);
+
+        const dates = recent.map(item => item.lastUpdated);
+
+        renderChart(
+            "gdpChart",
+            dates,
+            recent.map(item => item.economy.gdpGrowth),
+            "#ed1266"
+        );
+
+        renderChart(
+            "inflationChart",
+            dates,
+            recent.map(item => item.economy.inflation),
+            "#f59e0b"
+        );
+
+        renderChart(
+            "unemploymentChart",
+            dates,
+            recent.map(item => item.economy.unemployment),
+            "#dc2626"
+        );
+
+        renderChart(
+            "nominalChart",
+            dates,
+            recent.map(item => item.economy.gdp / 1e9),
+            "#16a34a",
+            "B"
+        );
+
+        setText(
+            "dataStatus",
+            "Latest simulation date: " + data.lastUpdated +
+            " — Figures retrieved from Square Country's " +
+            "automated economic simulation."
+        );
+
+    } catch (error) {
+        console.error(error);
+
+        setText(
+            "dataStatus",
+            "Economic statistics are temporarily unavailable. " +
+            "Please try again later."
+        );
+    }
+}
+
+loadStatistics();
+
+// Refresh the figures periodically while the page is open.
+setInterval(loadStatistics, 5 * 60 * 1000);
+
+feather.replace();
+</script>
+
+</body>
+</html>
